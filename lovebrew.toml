@@ -1,7 +1,7 @@
 [metadata]
-title = "Vocaloid Gacha"
+title = "Vocaloid Chance"
 author = "GuglioIsStupid, Wobb"
-description = "A port of Vocaloid Gacha to the 3DS"
+description = "A port of Vocaloid Chance to the 3DS"
 version = "1.0.0"
 icons = { ctr = "art/3ds_icon.png" } # custom icon paths
 
