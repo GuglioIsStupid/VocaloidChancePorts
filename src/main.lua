@@ -10,7 +10,7 @@ if love.system.getOS() == "Windows" or love.system.getOS() == "Linux" or love.sy
 end
 local nest
 if isDesktop then
-    nest = require("lib.nest").init({ console = "wii u", scale = 1, mode = "720" })
+    nest = require("lib.nest").init({ console = "3ds", scale = 1 })
 end
 
 local os = love._console
@@ -20,6 +20,8 @@ function love.graphics.getWidth(screen)
             return 400
         elseif screen == "bottom" then
             return 320
+        else
+            return 400
         end
     elseif os == "Switch" or os == "Wii U" then
         return 1280
@@ -34,6 +36,8 @@ function love.graphics.getHeight(screen)
             return 240
         elseif screen == "bottom" then
             return 320
+        else
+            return 240
         end
     elseif os == "Switch" or os == "Wii U" then
         return 720
@@ -48,6 +52,8 @@ function love.graphics.getDimensions(screen)
             return 400, 240
         elseif screen == "bottom" then
             return 320, 240
+        else
+            return 400, 240
         end
     elseif os == "Switch" or os == "Wii U" then
         return 1280, 720

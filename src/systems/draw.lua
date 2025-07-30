@@ -30,6 +30,7 @@ local function drawTopScreen(assets, chars, platform, gacha, screenW, screenH, s
     local depth = platform:getDepth(screen)
     love.graphics.draw(assets.bg, 0, 0)
     love.graphics.draw(assets.last10, 0 - depth *2, 0, 0, 2, 2)
+    print(screenW, screenH)
 
     local cols, spacing, scale = 5, 72, 2
     local gridWidth = cols * spacing
@@ -37,19 +38,19 @@ local function drawTopScreen(assets, chars, platform, gacha, screenW, screenH, s
     local gridHeight = rows * spacing
     local offsetX = (screenW - gridWidth) / 2
     local offsetY = (screenH - gridHeight) / 2
-
     for i = #gacha.lastChars, 1, -1 do
-        local char = gacha.lastChars[i]
-        local quad = chars[char]
-        if quad then
-            local reverseIndex = #gacha.lastChars - i
-            local col = reverseIndex % cols
-            local row = math.floor(reverseIndex / cols)
-            local x = col * spacing + offsetX
-            local y = row * spacing + offsetY
-            love.graphics.draw(assets.charSheet, quad, x - depth * 3, y, 0, scale, scale)
+            local char = gacha.lastChars[i]
+            local quad = chars[char]
+            if quad then
+                local reverseIndex = #gacha.lastChars - i
+                local col = reverseIndex % cols
+                local row = math.floor(reverseIndex / cols)
+                local x = col * spacing + offsetX
+                local y = row * spacing + offsetY
+                print(x, y)
+                love.graphics.draw(assets.charSheet, quad, x - depth * 3, y, 0, scale, scale)
+            end
         end
-    end
 end
 
 local function drawSwitchScreen(assets, chars, platform, gacha, screenW, screenH, screen)
