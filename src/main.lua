@@ -18,8 +18,7 @@ local charData = require("data.chars")
 
 local bg, charSheet, chars, gachaMachine, last10, knob, flash
 local crank, ding = love.audio.newSource("assets/crank.ogg", "static"), love.audio.newSource("assets/ding.ogg", "static")
-ding:setPitch(1.1)
-crank:setPitch(0.95)
+
 local knobCenter = { x = 0, y = 0 }
 local knobRotation = { 0 }
 local pulled, isTurning, touchId = false, false, nil
