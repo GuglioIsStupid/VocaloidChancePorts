@@ -72,9 +72,9 @@ local function getDepth(screen)
 end
 
 local function audioPlay(source)
-    if source:isPlaying() and source:tell() > 0.1 then
+    --[[ if source:isPlaying() and source:tell() > 0.1 then
         source:stop()
-    end
+    end ]]
     source:play()
 end
 
@@ -194,7 +194,6 @@ end
 function love.touchpressed(id, x, y)
     if pulled or not allowInput or step > 0 then
         if not isTurning then
-            -- do step stuff if needed
             step = step + 1
             if step > 2 then
                 flashScale = {0}
@@ -265,6 +264,15 @@ end
 function love.gamepadpressed(_, button)
     if button == "a" and not pulled and allowInput and step == 0 then
         triggerPull()
+    elseif button == "a" and allowInput and step ~= 0 and not isTurning then
+        step = step + 1
+        if step > 2 then
+            flashScale = {0}
+            step = 0
+            curPulledChar.show = false
+            pulled = false
+            showNew = false
+        end
     elseif button == "b" then
         resetGacha()
     end
