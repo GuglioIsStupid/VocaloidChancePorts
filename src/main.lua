@@ -119,7 +119,14 @@ end
 function love.touchpressed(...) print(...)  Gacha.touchpressed(...)   end
 function love.touchmoved(...)     Gacha.touchmoved(...)     end
 function love.touchreleased(...)  Gacha.touchreleased(...)  end
-function love.gamepadpressed(...) Gacha.gamepadpressed(...) end
+function love.gamepadpressed(...)
+    Gacha.gamepadpressed(...)
+
+    local k = select(2, ...)
+    if k == "start" then
+        love.event.quit()
+    end
+end
 
 function love.keypressed(k)
     Gacha.keypressed(k)
