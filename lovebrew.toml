@@ -2,7 +2,7 @@
 title = "Vocaloid Chance"
 author = "GuglioIsStupid, Wobb"
 description = "A port of Vocaloid Chance to the 3DS"
-version = "1.1.0"
+version = "1.1.1"
 icons = { ctr = "art/3ds_icon.png", hac = "art/switch_icon.jpg", cafe = "art/wiiu_icon.png" } # custom icon paths
 
 [build]
