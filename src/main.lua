@@ -170,7 +170,7 @@ function love.load()
     knobCenter.x = w / 2 - 1
     knobCenter.y = h / 2 + 81
 
-    love.graphics.setFont(love.graphics.newFont("assets/pixearg.ttf", 7))
+    love.graphics.setFont(love.graphics.newFont("assets/pixearg.ttf", 8))
 end
 
 function love.update(dt)
@@ -305,10 +305,10 @@ function love.draw(screen)
                 local charIndex = curPulledChar.id
                 local charName = charData[charIndex] and charData[charIndex].name
                 if charName then
-                    love.graphics.printf(charName, 0, 146, w, "center")
+                    love.graphics.printf(charName, 0, 145, w, "center")
                 end
             elseif step == 2 then
-                love.graphics.printf(curRarity, 0, 146, w, "center")
+                love.graphics.printf(curRarity, 0, 145, w, "center")
             end
         end
     else
