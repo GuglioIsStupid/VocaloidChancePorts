@@ -1,0 +1,9 @@
+{
+    "pixelbyte.love2d.srcDir": "./src/",
+    "Lua.diagnostics.globals": [
+        "love"
+    ],
+    "Lua.diagnostics.disable": [
+        "deprecated"
+    ]
+}
