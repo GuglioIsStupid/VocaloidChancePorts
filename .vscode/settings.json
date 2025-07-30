@@ -4,6 +4,7 @@
         "love"
     ],
     "Lua.diagnostics.disable": [
-        "deprecated"
+        "deprecated",
+        "duplicate-set-field"
     ]
 }

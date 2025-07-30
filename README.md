@@ -1,3 +1,10 @@
-# Vocaloid Chance 3D
+# Vocaloid Chance Ports
 
-A 3DS port of [Vocaloid Chance](https://wobbuu.itch.io/vocaloid-chance)
+A homebrew port of [Vocaloid Chance](https://wobbuu.itch.io/vocaloid-chance)
+
+Supports the following systems:
+- 3DS
+- Switch
+
+Will support the following systems later:
+- Wii U
