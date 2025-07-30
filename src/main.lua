@@ -276,6 +276,10 @@ function love.gamepadpressed(_, button)
     elseif button == "b" then
         resetGacha()
     end
+
+    if button == "start" then
+        love.event.quit()
+    end
 end
 
 function love.wheelmoved(x, y)
