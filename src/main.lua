@@ -170,7 +170,11 @@ function love.load()
     knobCenter.x = w / 2 - 1
     knobCenter.y = h / 2 + 81
 
-    love.graphics.setFont(love.graphics.newFont("assets/pixearg.ttf", 8))
+    local fontSize = 8
+    if love._console == "3DS" and (love.system.getOS() ~= "Windows" or love.system.getOS() ~= "Linux" or love.system.getOS() ~= "OS X") then
+        fontSize = 14
+    end
+    love.graphics.setFont(love.graphics.newFont("assets/pixearg.ttf", fontSize))
 end
 
 function love.update(dt)
@@ -309,10 +313,10 @@ function love.draw(screen)
                 local charIndex = curPulledChar.id
                 local charName = charData[charIndex] and charData[charIndex].name
                 if charName then
-                    love.graphics.printf(charName, 0, 145, w, "center")
+                    love.graphics.printf(charName, 0, 142, w, "center")
                 end
             elseif step == 2 then
-                love.graphics.printf(curRarity, 0, 145, w, "center")
+                love.graphics.printf(curRarity, 0, 142, w, "center")
             end
         end
     else
