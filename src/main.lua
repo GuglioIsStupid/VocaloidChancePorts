@@ -60,6 +60,8 @@ local curRarity = "COMMON"
 local step = 0
 local crankStep = 0
 local flashScale = {0}
+local showNew = false
+local isNew = false
 
 local function getDepth(screen)
 	local depth = screen ~= "bottom" and -love.graphics.getDepth() or 0
@@ -131,6 +133,7 @@ local function triggerPull()
         curPulledChar.show = true
         curRarity = rarity
 
+        isNew = not unlockedChars[index]
         unlockedChars[index] = true
         audioPlay(ding)
         finishAnimation()
@@ -139,6 +142,9 @@ local function triggerPull()
         crankStep = 2
         Timer.after(0.25, function()
             crankStep = 3
+            Timer.after(0.45, function()
+                showNew = isNew
+            end)
         end)
     end)
 end
@@ -149,7 +155,8 @@ function love.load()
     gachaMachine = love.graphics.newImage("assets/gachamachineA.png")
     last10 = love.graphics.newImage("assets/last10.png")
     knob = love.graphics.newImage("assets/knob.png")
-    flash = love.graphics.newImage("assets/flash.png")
+    flash = love.graphics.newImage("assets/Flash.png")
+    NEW = love.graphics.newImage("assets/NEW.png")
 
     chars = {}
     for line in love.filesystem.lines("assets/charSheet.txt") do
@@ -194,6 +201,7 @@ function love.touchpressed(id, x, y)
                 step = 0
                 curPulledChar.show = false
                 pulled = false
+                showNew = false
             end
         end
         return
@@ -246,6 +254,7 @@ function love.keypressed(k)
             step = 0
             curPulledChar.show = false
             pulled = false
+            showNew = false
         end
     elseif k == "r" then
         resetGacha()
@@ -279,6 +288,9 @@ function love.draw(screen)
             if charQuad then
                 local _, _, charWidth, charHeight = charQuad:getViewport()
                 love.graphics.draw(charSheet, charQuad, curPulledChar.x, curPulledChar.y, 0, 2, 2, charWidth / 2, charHeight / 2)
+            end
+            if showNew then
+                love.graphics.draw(NEW, curPulledChar.x + 20, curPulledChar.y - 35, 0, 1.5, 1.5)
             end
 
             if step == 1 then
