@@ -11,6 +11,11 @@ Will support the following systems later:
 
 Unfortunately, due to issues with the framework I am using, Wii U will be heavily delayed until the next version is available.
 
+# Assets
+No assets in this port are made by me. All rights go to [Wobb](https://x.com/wobbuuu)
+
+Code is allowed for use for anyone, I have no care for it.
+
 # Installation
 
 ## 3DS
