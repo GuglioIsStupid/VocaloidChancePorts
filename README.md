@@ -5,6 +5,7 @@ A homebrew port of [Vocaloid Chance](https://wobbuu.itch.io/vocaloid-chance)
 Supports the following systems:
 - 3DS
 - Switch
+- PSP
 
 Will support the following systems later:
 - Wii U

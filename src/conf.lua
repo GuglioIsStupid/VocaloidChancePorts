@@ -1,3 +1,3 @@
 function love.conf(t)
-    t.identity = "VocaloidChance3D"
+    t.identity = "VocaloidChance"
 end

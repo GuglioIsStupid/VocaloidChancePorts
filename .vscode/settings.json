@@ -5,6 +5,8 @@
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
-        "duplicate-set-field"
-    ]
+        "duplicate-set-field",
+        "undefined-global"
+    ],
+    "Lua.completion.autoRequire": false
 }

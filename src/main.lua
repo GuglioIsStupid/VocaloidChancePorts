@@ -3,6 +3,7 @@ local platformModules = {
     ["3DS"] = "platform.3ds",
     ["Wii U"] = "platform.wiiu",
     ["Switch"] = "platform.switch",
+    ["PSP"] = "platform.psp"
 }
 local isDesktop = false
 if love.system.getOS() == "Windows" or love.system.getOS() == "Linux" or love.system.getOS() == "macOS" then
@@ -25,6 +26,8 @@ function love.graphics.getWidth(screen)
         end
     elseif os == "Switch" or os == "Wii U" then
         return 1280
+    elseif os == "PSP" then
+        return 480
     end
 
     return 1280
@@ -41,6 +44,8 @@ function love.graphics.getHeight(screen)
         end
     elseif os == "Switch" or os == "Wii U" then
         return 720
+    elseif os == "PSP" then
+        return 270
     end
 
     return 720
@@ -57,6 +62,8 @@ function love.graphics.getDimensions(screen)
         end
     elseif os == "Switch" or os == "Wii U" then
         return 1280, 720
+    elseif os == "PSP" then
+        return 480, 270
     end
 
     return 1280, 720
@@ -82,7 +89,11 @@ function love.load()
     love.graphics.setFont(love.graphics.newFont("assets/pixearg.ttf", fontSize))
 
     assets = Assets.load(Platform)
-    chars = Assets.loadCharQuads(assets.charSheet)
+    if love._console == "PSP" then
+        chars = Assets.loadChars()
+    else
+        chars = Assets.loadCharQuads(assets.charSheet)
+    end
 
     local w, h = love.graphics.getDimensions("bottom")
 
@@ -95,6 +106,9 @@ function love.load()
     elseif love._console == "Wii U" then
         knobCenter.x = w / 2
         knobCenter.y = h / 2 + 260
+    elseif love._console == "PSP" then
+        knobCenter.x = w / 2 + 3
+        knobCenter.y = h / 2 + 100
     end
 
     Gacha.init({
@@ -138,6 +152,7 @@ function love.keypressed(k)
     Gacha.keypressed(k)
     ---@diagnostic disable-next-line: need-check-nil
     if isDesktop then
+    ---@diagnostic disable-next-line: need-check-nil
         nest.video.keypressed(k)
     end
 end

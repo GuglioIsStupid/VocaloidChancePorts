@@ -1,5 +1,8 @@
+# Build Files
 build/
 *.zip
 *.3dsx
 *.nro
 *.wuhb
+
+tools/

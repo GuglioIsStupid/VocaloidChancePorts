@@ -233,6 +233,50 @@ local function drawWiiUScreen(screen, assets, chars, platform, gacha, screenW, s
     end
 end
 
+local function drawPSPScreen(assets, chars, platform, gacha, screenW, screenH, screen)
+    love.graphics.draw(assets.bg, 0, 0, 0, 1.265, 1.265)
+    love.graphics.draw(assets.gachaMachine, 70, 40, 0, 1.45, 1.45)
+    love.graphics.draw(assets.knob, gacha.knobCenter.x, gacha.knobCenter.y, gacha.knobRotation[1], 1.45, 1.45, assets.knob:getWidth() / 2, assets.knob:getHeight() / 2)
+
+    love.graphics.draw(assets.flash, screenW/2, screenH/2 - 35, 0, gacha.flashScale[1] * 1.45, gacha.flashScale[1] * 1.45, assets.flash:getWidth()/2, assets.flash:getHeight()/2)
+
+    if gacha.curPulledChar.show then
+        local charImage = chars[gacha.curPulledChar.img]
+        if charImage then
+            love.graphics.draw(charImage, gacha.curPulledChar.x, gacha.curPulledChar.y, 0, 1.45, 1.45, charImage:getWidth() / 2, charImage:getHeight() / 2)
+        end
+        if gacha.showNew then
+            love.graphics.draw(assets.newTag, gacha.curPulledChar.x + 20, gacha.curPulledChar.y - 35, 0, 1.5, 1.5)
+        end
+        if gacha.step == 1 then
+            local idx = gacha.curPulledChar.id
+            local name = charData[idx] and charData[idx].name or ""
+            love.graphics.printf(name, 0, screenH - 92, screenW, "center")
+        elseif gacha.step == 2 then
+            love.graphics.printf(gacha.curRarity, 0, screenH - 92, screenW, "center")
+        end
+    end
+
+    love.graphics.draw(assets.last10, 0, 0, 0, 1.45, 1.45)
+
+    local cols, spacing, scale = 2, 33, 1.45
+    local rows = math.ceil(#gacha.lastChars / cols)
+    local offsetX = 5
+    local offsetY = 20
+    for i = #gacha.lastChars, 1, -1 do
+        local char = gacha.lastChars[i]
+        local quad = chars[char]
+        if quad then
+            local reverseIndex = #gacha.lastChars - i
+            local col = reverseIndex % cols
+            local row = math.floor(reverseIndex / cols)
+            local x = col * (spacing*scale) + offsetX
+            local y = row * (spacing*scale) + offsetY
+            love.graphics.draw(quad, x, y, 0, scale, scale)
+        end
+    end
+end
+
 local Draw = {}
 
 function Draw.render(screen, ctx)
@@ -246,6 +290,8 @@ function Draw.render(screen, ctx)
         end
     elseif console == "Wii U" then
         drawWiiUScreen(screen, ctx.assets, ctx.chars, ctx.platform, ctx.gacha, w, h)
+    elseif console == "PSP" then
+        drawPSPScreen(ctx.assets, ctx.chars, ctx.platform, ctx.gacha, w, h, screen)
     else
         drawSwitchScreen(ctx.assets, ctx.chars, ctx.platform, ctx.gacha, w, h, screen)
     end

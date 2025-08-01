@@ -58,7 +58,9 @@ function Gacha.init(config)
 end
 
 local function audioPlay(source)
-    source:play()
+    if not source:isPlaying() then
+        source:play()
+    end
 end
 
 local function pullCharacter()
@@ -76,7 +78,10 @@ local function finishAnimation()
     local pos = Gacha.platform:getTweenPos()
     Gacha.curPulledChar.x = pos.startX
     Gacha.curPulledChar.y = pos.startY
-    Timer.tween(0.1, Gacha.curPulledChar, {x = pos.endX, y = pos.endY}, "linear")
+    Timer.tween(0.1, Gacha.curPulledChar, {x = pos.endX, y = pos.endY}, "linear", function()
+        Gacha.curPulledChar.x = pos.endX
+        Gacha.curPulledChar.y = pos.endY
+    end)
 end
 
 local function triggerPull()
@@ -123,6 +128,7 @@ function Gacha.update(dt)
         audioPlay(crank)
         Gacha.crankStep = 0
         Timer.tween(0.5, Gacha.flashScale, {1.2}, "out-back", function()
+            Gacha.flashScale = {1.2}
             Gacha.allowInput = true
             Gacha.step = 1
         end)
@@ -174,7 +180,9 @@ function Gacha.touchreleased(id)
     if id ~= Gacha.touchId or not Gacha.allowInput or Gacha.step > 0 then return end
     Gacha.isTurning, Gacha.touchId, Gacha.lastAngle = false, nil, nil
     if Gacha.totalRotation < 2 * math.pi then
-        Timer.tween(0.5, Gacha.knobRotation, {0}, "out-back")
+        Timer.tween(0.5, Gacha.knobRotation, {0}, "out-back", function()
+            Gacha.knobRotation[1] = 0
+        end)
     end
     Gacha.totalRotation = 0
 end
