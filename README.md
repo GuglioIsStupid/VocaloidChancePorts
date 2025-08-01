@@ -9,6 +9,8 @@ Supports the following systems:
 
 Will support the following systems later:
 - Wii U
+- PS3
+- Vita
 
 Unfortunately, due to issues with the framework I am using, Wii U will be heavily delayed until the next version is available.
 
@@ -36,3 +38,8 @@ Code is allowed for use for anyone, I have no care for it.
 - Place it in the "wiiu" folder on your Nintendo Switch SD Card
 - Launch the homebrew from the Home Menu
 
+## PSP
+- Install a PSP CFW
+- Download "VocaloidChancePSP.zip"
+- Extract the folder into PSP/Game/. Do NOT change the folder name.
+- Launch the application from the SD Storage
