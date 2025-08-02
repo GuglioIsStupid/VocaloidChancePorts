@@ -11,6 +11,7 @@ Will support the following systems later:
 - Wii U
 - PS3
 - Vita
+- Wii
 
 Unfortunately, due to issues with the framework I am using, Wii U will be heavily delayed until the next version is available.
 
